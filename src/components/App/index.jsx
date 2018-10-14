@@ -46,7 +46,7 @@ export default class App extends Component {
           <strong>n: {this.state.slidern}</strong>
           <br />
           <input type="range"
-            min={2} max={10} step={1}
+            min={1} max={10} step={1}
             value={this.state.slidern}
             style={{ width: "90%", maxWidth: "900px" }}
             onChange={this.onSlidernChange}
