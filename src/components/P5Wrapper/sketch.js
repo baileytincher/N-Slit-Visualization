@@ -31,7 +31,7 @@ export default function(p) {
     console.log("::: displayDensity:", p.displayDensity());
     console.log("::: pixelDensity:", p.pixelDensity());
     onReady();
-    p.mousePressed();
+    p.pixelDensity(p.displayDensity());
   }
 
   p.draw = function() {
@@ -45,6 +45,8 @@ export default function(p) {
     let a = props.slidera;
 
     console.log(diff);
+    p.strokeWeight(2);
+    p.stroke(0, 61, 153);
 
     p.beginShape();
     if (diff) {

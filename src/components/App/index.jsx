@@ -43,7 +43,7 @@ export default class App extends Component {
             onClick={ this.onDiffChange }
           />Diffraction
           <br />
-          <strong>n: {this.state.slidern}</strong>
+          <strong>(Number of Slits) n: {this.state.slidern + " slits" }</strong>
           <br />
           <input type="range"
             min={1} max={10} step={1}
@@ -52,7 +52,7 @@ export default class App extends Component {
             onChange={this.onSlidernChange}
           />
           <br />
-          <strong>a: {this.state.slidera}</strong>
+          <strong>(Slit Width) a: { (this.state.slidera / this.micro).toFixed(2) + " micrometers" }</strong>
           <br />
           <input type="range"
             min={50 * this.nano} max={ 5 * this.micro } step={.05 * this.micro}
@@ -61,7 +61,7 @@ export default class App extends Component {
             onChange={this.onSlideraChange}
           />
           <br />
-          <strong>d: {this.state.sliderd}</strong>
+          <strong>(Distance Between Slits) d: { (this.state.sliderd / this.micro).toFixed(2) + " micrometers" }</strong>
           <br />
           <input type="range"
             min={50 * this.nano} max={25 * this.micro} step={.5 * this.micro}
@@ -70,7 +70,7 @@ export default class App extends Component {
             onChange={this.onSliderdChange}
           />
           <br />
-          <strong>lambda: {this.state.sliderl}</strong>
+          <strong>(Wavelength) lambda: {(this.state.sliderl / this.nano).toFixed(1) + " nanometers"}</strong>
           <br />
           <input type="range"
             min={50 * this.nano} max={this.micro} step={25 * this.nano}
@@ -79,7 +79,7 @@ export default class App extends Component {
             onChange={this.onSliderlChange}
           />
           <br />
-          <strong>Intensity: {this.state.slideri}</strong>
+          <strong>(Source Intensity) Io: {this.state.slideri + " watts/m^2"}</strong>
           <br />
           <input type="range"
             min={0} max={20} step={1}
