@@ -7,26 +7,42 @@ export default class App extends Component {
     super();
     this.nano = Math.pow(10, -9);
     this.micro = Math.pow(10, -6);
-    this.state = { status: "", slidern: 2, sliderd: this.micro, sliderl: 490 * this.nano, slideri: 5 };
+    this.state = { status: "", slidera: this.micro, slidern: 2, sliderd: this.micro, sliderl: 490 * this.nano, slideri: 5, diffraction: false };
   }
 
   onReady = () => this.setState({ status: "ready" });
 
+  onSlideraChange = (event) => { this.setState({ slidera: +event.target.value }) };
   onSlidernChange = (event) => { this.setState({ slidern: +event.target.value }) };
   onSliderdChange = (event) => { this.setState({ sliderd: +event.target.value }) };
   onSliderlChange = (event) => { this.setState({ sliderl: +event.target.value }) };
   onSlideriChange = (event) => { this.setState({ slideri: +event.target.value }) };
-  onClick = (event) => { this.setState({  }) };
+  onInterChange = (event) => {this.setState({ diffraction: false }) };
+  onDiffChange = (event) => {this.setState({ diffraction: true }) };
+
 
   render() {
     return (
       <div className="app">
         <P5Wrapper
-          p5Props={{ slidern: this.state.slidern, sliderd: this.state.sliderd, sliderl: this.state.sliderl, slideri: this.state.slideri }}
+          p5Props={{ slidern: this.state.slidern, sliderd: this.state.sliderd, sliderl: this.state.sliderl, slideri: this.state.slideri, diffraction: this.state.diffraction, slidera: this.state.slidera }}
           onReady={this.onReady} 
         />
-        <br />
+
+        <br /> 
         <div style={{ textAlign: "center" }}>
+          <input type="radio"
+            name="Interference"
+            value="Interference"
+            defaultChecked
+            onClick={ this.onInterChange }
+          />Interference 
+          <input type="radio"
+            name="Interference"
+            value="Diffraction"
+            onClick={ this.onDiffChange }
+          />Diffraction
+          <br />
           <strong>n: {this.state.slidern}</strong>
           <br />
           <input type="range"
@@ -34,6 +50,15 @@ export default class App extends Component {
             value={this.state.slidern}
             style={{ width: "90%", maxWidth: "900px" }}
             onChange={this.onSlidernChange}
+          />
+          <br />
+          <strong>a: {this.state.slidera}</strong>
+          <br />
+          <input type="range"
+            min={50 * this.nano} max={ 5 * this.micro } step={.05 * this.micro}
+            value={this.state.slidera}
+            style={{ width: "90%", maxWidth: "900px" }}
+            onChange={this.onSlideraChange}
           />
           <br />
           <strong>d: {this.state.sliderd}</strong>
@@ -62,13 +87,9 @@ export default class App extends Component {
             style={{ width: "90%", maxWidth: "900px" }}
             onChange={this.onSlideriChange}
           />
-          <input type="button"
-            value="hi"
-            onClick={this.onClick}
-          />
         </div>
         <p style={{ textAlign: "center" }}>
-          <a href="https://github.com/atorov/react-p5js">
+          <a href="https://github.com/baileytincher/N-Slit-Visualization">
             <img border="0" alt="github logo" src="/img/github-logo.png" width="auto" height="28px" style={{ verticalAlign: "middle" }}/>
           </a>
         </p>

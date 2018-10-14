@@ -16,6 +16,7 @@ class P5Wrapper extends Component {
   componentDidUpdate(nextProps) {
     this.canvas.pushProps({ ...this.props.p5Props });
     this.setState();
+    console.log(this.props.p5Props.diffraction);
 
   }
 
